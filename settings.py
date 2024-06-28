@@ -10,7 +10,7 @@ class BaseConfig(object):
     SQLALCHEMY_POOL_SIZE = 5
     SQLALCHEMY_POOL_RECYCLE = -1
     SQLALCHEMY_POOL_TIMEOUT = 30
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
 
 
 class DevelopmentConfig(BaseConfig):

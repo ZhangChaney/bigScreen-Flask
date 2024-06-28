@@ -9,7 +9,7 @@ app = create_app()
 
 
 def generate_users():
-    user1 = User(username='admin', email='admin@chaney.edu', password='123456', phone='13188995566')
+    user1 = User(username='admin', email='admin@chaney.edu', password='123456', phone='13188995566', role=1)
     user2 = User(username='jackson', email='jackson@chaney.edu', password='123456', phone='13288995567')
     user3 = User(username='kris', email='kris@chaney.edu', password='123456', phone='13388995568')
     user4 = User(username='janey', email='janey@chaney.edu', password='123456', phone='13488995569')

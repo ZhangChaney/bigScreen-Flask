@@ -58,14 +58,36 @@ def update_user():
     password = request.get_json()['password']
     username = request.get_json().get('username')
     userid = request.get_json().get('userid')
+    phone = request.get_json().get('phone')
+    email = request.get_json().get('email')
+    role = request.get_json().get('role')
     # 根据userid查询用户
     u = User.query.get(userid)
     if u:
         u.username = username
         u.password = password
+        u.phone = phone
+        u.email = email
+        u.role = role
+    try:
         db.session.commit()
-        return Result.success()
-    return Result.error(message="用户不存在！")
+        return Result.success(message='更新成功！')
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        return Result.error(message="用户不存在！")
+
+
+@bp.delete('/delete/<int:user_id>')
+def delete_user(user_id: int):
+    try:
+        User.query.filter(User.userid == user_id).delete()
+        db.session.commit()
+        return Result.success(message='删除成功!')
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        return Result.error(message='删除失败！')
 
 
 @bp.get('/getAll')
@@ -81,3 +103,11 @@ def get_all_user():
         data.append(user.to_dict())
 
     return Result.success(data=data)
+
+
+@bp.get('/getUserById/<int:user_id>')
+def get_user_by_id(user_id: int):
+    user = User.query.filter_by(userid=user_id).first()
+    if not user:
+        return Result.error(message='用户不存在！')
+    return Result.success(data=user.to_dict())
