@@ -24,4 +24,9 @@ flask run
 # 启动方式2
 python app.py
 ```
+## 意见和反馈
+:e-mail: zhangqiuqian01@gmail.com
+```text
+请通过邮箱给我更多的意见和反馈
+```
 
